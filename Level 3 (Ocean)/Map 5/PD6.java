@@ -1,4 +1,4 @@
-package Quarter_3;
+package PD;
 
 import javax.swing.*; 
 import java.awt.*; 
@@ -93,22 +93,22 @@ public class PD6 implements KeyListener {
         textSpace=new JLabel();
         corals = new boolean[mapWidth * mapHeight]; 
 
-        wall = new ImageIcon("PD6_UpdatedImages/wall.png"); 
-        water = new ImageIcon("PD6_UpdatedImages/Final_Water.png"); 
-        c1 = new ImageIcon("PD6_UpdatedImages/50.png"); 
-        c2 = new ImageIcon("PD6_UpdatedImages/51.png"); 
-        c3 = new ImageIcon("PD6_UpdatedImages/52.png"); 
-        c4 = new ImageIcon("PD6_UpdatedImages/53.png"); 
-        gates = new ImageIcon("PD6_UpdatedImages/Gates.png"); 
-        kraken = new JLabel(new ImageIcon("PD6_UpdatedImages/kraken.png"));
-        frontS=new ImageIcon("PD6_UpdatedImages/frontstand.png");
-        frontW=new ImageIcon("PD6_UpdatedImages/frontwalk.png");
-        leftS=new ImageIcon("PD6_UpdatedImages/leftstand.png");
-        leftW=new ImageIcon("PD6_UpdatedImages/leftwalk.png");
-        rightS=new ImageIcon("PD6_UpdatedImages/rightstand.png");
-        rightW=new ImageIcon("PD6_UpdatedImages/rightwalk.png");
-        backS=new ImageIcon("PD6_UpdatedImages/backstand.png");
-        backW=new ImageIcon("PD6_UpdatedImages/backwalk.png");
+        wall = new ImageIcon("PD Assets/wall.png"); 
+        water = new ImageIcon("PD Assets/Final_Water.png"); 
+        c1 = new ImageIcon("PD Assets/50.png"); 
+        c2 = new ImageIcon("PD Assets/51.png"); 
+        c3 = new ImageIcon("PD Assets/52.png"); 
+        c4 = new ImageIcon("PD Assets/53.png"); 
+        gates = new ImageIcon("PD Assets/Gates.png"); 
+        kraken = new JLabel(new ImageIcon("PD Assets/kraken.png"));
+        frontS=new ImageIcon("PD Assets/frontstand.png");
+        frontW=new ImageIcon("PD Assets/frontwalk.png");
+        leftS=new ImageIcon("PD Assets/leftstand.png");
+        leftW=new ImageIcon("PD Assets/leftwalk.png");
+        rightS=new ImageIcon("PD Assets/rightstand.png");
+        rightW=new ImageIcon("PD Assets/rightwalk.png");
+        backS=new ImageIcon("PD Assets/backstand.png");
+        backW=new ImageIcon("PD Assets/backwalk.png");
         
         wall = new ImageIcon(wall.getImage().getScaledInstance((frameWidth/mapWidth), (frameHeight/mapHeight), Image.SCALE_DEFAULT)); 
         water = new ImageIcon(water.getImage().getScaledInstance((frameWidth/mapWidth), (frameHeight/mapHeight), Image.SCALE_DEFAULT)); 
