@@ -380,18 +380,21 @@ public class PD4 implements KeyListener,ActionListener{
     }
     
     public void playerInput(int code) {
-
-        playerCombination[index] = code;
-
-        if (playerCombination[index] != correctCombination[index]) index = 0;
-
-        index++;
-  
-        if (index == correctCombination.length) {
-            JOptionPane.showMessageDialog(frame,  
-                "You finished the level!", 
-                "Information dialog",                                         
-                JOptionPane.INFORMATION_MESSAGE);
+    try {
+            playerCombination[index] = code;
+            
+            if (playerCombination[index] != correctCombination[index]) index = 0;
+            
+            index++;
+            
+            if (index == correctCombination.length) {
+                JOptionPane.showMessageDialog(frame,  
+                    "You finished the level!", 
+                    "Information dialog",                                         
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Invalid combination index.");
             index = 0;
         }
     }
