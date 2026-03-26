@@ -157,7 +157,7 @@ public class PD6 implements KeyListener,ActionListener{
                 characterPosition = i;
             }
             else if(characterPlace[i] == 2){
-                tendrilNPC = new TendrilNPC("Tendril", 100);
+                tendrilNPC = new TendrilNPC("Tendril");
                 character[i] = new JLabel(tendril);
                 tendLocation = i;
             }
@@ -508,11 +508,9 @@ public class PD6 implements KeyListener,ActionListener{
 
 class CharacterEntity {
     private String name;
-    private int health;
-    
-    public CharacterEntity(String name, int health) {
+   
+    public CharacterEntity(String name) {
         this.name = name;
-        this.health = health;
     }
     
     public String getName() {
@@ -522,34 +520,17 @@ class CharacterEntity {
     public void setName(String name) {
         this.name = name;
     }
-    
-    public int getHealth() {
-        return health;
-    }
-    
-    public void setHealth(int health) {
-        if(health < 0) health = 0;
-        this.health = health;
-    }
-    
-    public void showInfo() {
-        System.out.println("Character: " + name + ", Health: " + health);
-    }
 
     public void interact() {
-        System.out.println(name + " says hello!");
-    }
-    
-    public void interact(String message) {
-        System.out.println(name + " says: " + message);
+        System.out.println(name + " is an NPC");
     }
 }
 
 class TendrilNPC extends CharacterEntity {
     private boolean isBlocking;
     
-    public TendrilNPC(String name, int health) {
-        super(name, health);
+    public TendrilNPC(String name) {
+        super(name);
         this.isBlocking = true;
     }
     
@@ -564,14 +545,14 @@ class TendrilNPC extends CharacterEntity {
     @Override
     public void interact() {
         if(isBlocking)
-            System.out.println(getName() + " blocks your path and asks a question!");
+            System.out.println(getName() + " blocks your path.");
         else
-            System.out.println(getName() + " is gone, path is clear.");
+            System.out.println(getName() + " is gone.");
     }
     
     public void interact(boolean quizMode) {
         if(quizMode)
-            System.out.println(getName() + " is ready for a quiz!");
+            System.out.println(getName() + " is ready.");
         else
             interact();
     }
