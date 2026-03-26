@@ -195,12 +195,30 @@ public class Q3PD4 implements KeyListener {
     }
 
     private void askQuestion(String question, String correct) {
-        String input;
-        do {
-            input = JOptionPane.showInputDialog(frame, question);
-            if (input == null) System.exit(0);
-        } while (!input.equalsIgnoreCase(correct));
-    }
+    String input;
+
+    do {
+        input = JOptionPane.showInputDialog(frame, question);
+
+        if (input == null) System.exit(0);
+
+        input = input.trim().toUpperCase();
+
+        // Check if input is invalid
+        if (!(input.equals("A") || input.equals("B") || input.equals("C") || input.equals("D"))) {
+            JOptionPane.showMessageDialog(frame,
+                    "Invalid input! Please enter A, B, C, or D only.");
+            continue;
+        }
+
+        // Check if wrong answer
+        if (!input.equals(correct)) {
+            JOptionPane.showMessageDialog(frame,
+                    "Wrong answer. Try again!");
+        }
+
+    } while (!input.equals(correct));
+}
 
     private void runEnding() {
         JOptionPane.showMessageDialog(frame,
