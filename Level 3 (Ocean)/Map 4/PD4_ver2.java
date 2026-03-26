@@ -1,4 +1,4 @@
-package Quarter_3;
+package PD;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,26 +47,26 @@ public class PD4_ver2 implements KeyListener {
         characterPosition = -1;
         characterMode = 0;
         
-        wall = new ImageIcon("PD4_Images/wall.png"); 
-        water = new ImageIcon("PD4_Images/Final_water.png");
-        gates = new ImageIcon("PD4_Images/Gates.png");        
-        c1 = new ImageIcon("PD4_Images/Chest_1.png");
-        c2 = new ImageIcon("PD4_Images/Chest_2.png"); 
-        c3 = new ImageIcon("PD4_Images/Chest_3.png"); 
-        c4 = new ImageIcon("PD4_Images/Chest_4.png");
-        c5 = new ImageIcon("PD4_Images/Chest_5.png"); 
-        Tf = new ImageIcon("PD4_Images/37.png");
-        Tb = new ImageIcon("PD4_Images/40.png");
-        Tl = new ImageIcon("PD4_Images/39.png");
-        Tr = new ImageIcon("PD4_Images/38.png");
-        frontS=new ImageIcon("PD4_Images/frontstand.png");
-        frontW=new ImageIcon("PD4_Images/frontwalk.png");
-        leftS=new ImageIcon("PD4_Images/leftstand.png");
-        leftW=new ImageIcon("PD4_Images/leftwalk.png");
-        rightS=new ImageIcon("PD4_Images/rightstand.png");
-        rightW=new ImageIcon("PD4_Images/rightwalk.png");
-        backS=new ImageIcon("PD4_Images/backstand.png");
-        backW=new ImageIcon("PD4_Images/backwalk.png");
+        wall = new ImageIcon("PD Assets/wall.png"); 
+        water = new ImageIcon("PD Assets/Final_water.png");
+        gates = new ImageIcon("PD Assets/Gates.png");        
+        c1 = new ImageIcon("PD Assets/Chest_1.png");
+        c2 = new ImageIcon("PD Assets/Chest_2.png"); 
+        c3 = new ImageIcon("PD Assets/Chest_3.png"); 
+        c4 = new ImageIcon("PD Assets/Chest_4.png");
+        c5 = new ImageIcon("PD Assets/Chest_5.png"); 
+        Tf = new ImageIcon("PD Assets/37.png");
+        Tb = new ImageIcon("PD Assets/40.png");
+        Tl = new ImageIcon("PD Assets/39.png");
+        Tr = new ImageIcon("PD Assets/38.png");
+        frontS=new ImageIcon("PD Assets/frontstand.png");
+        frontW=new ImageIcon("PD Assets/frontwalk.png");
+        leftS=new ImageIcon("PD Assets/leftstand.png");
+        leftW=new ImageIcon("PD Assets/leftwalk.png");
+        rightS=new ImageIcon("PD Assets/rightstand.png");
+        rightW=new ImageIcon("PD Assets/rightwalk.png");
+        backS=new ImageIcon("PD Assets/backstand.png");
+        backW=new ImageIcon("PD Assets/backwalk.png");
 
         wall = new ImageIcon(wall.getImage().getScaledInstance((frameWidth / mapWidth), (frameHeight / mapHeight), Image.SCALE_DEFAULT));
         water = new ImageIcon(water.getImage().getScaledInstance((frameWidth / mapWidth), (frameHeight / mapHeight), Image.SCALE_DEFAULT));
