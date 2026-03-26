@@ -117,18 +117,25 @@ public class FornixMap2 implements KeyListener{
     if(input == null) return;
 
     if(input.equalsIgnoreCase("KODI")){
-        JOptionPane.showMessageDialog(
-            frame,
-            "The cave opens... ✨\nLevel complete!"
-        );
-        
-        // 1. Close the current Level 1 window
-        frame.dispose(); 
-
-        // 2. Launch Level 2
-        FornixMap4 level2 = new FornixMap4();
-        level2.setFrame();
-        
+        try {
+                // Attempt to launch Level 2
+                FornixMap4 level2 = new FornixMap4();
+                level2.setFrame();
+                
+                // Only close the current window if Level 2 starts successfully
+                frame.dispose(); 
+                
+                JOptionPane.showMessageDialog(null, "The cave opens... ✨\nLevel 2 Loaded!");
+            } catch (Exception e) {
+                // If Level 2 fails to load (e.g., NullPointerException, Missing files)
+                JOptionPane.showMessageDialog(
+                    frame, 
+                    "Failed to load Level 2!\nError: " + e.getMessage(), 
+                    "System Error", 
+                    JOptionPane.ERROR_MESSAGE
+                );
+                e.printStackTrace(); // Useful for debugging in the console
+            }
     } else {
         JOptionPane.showMessageDialog(frame, "Wrong password ❌");
     }
