@@ -7,5 +7,6 @@ Enjoy a review of the creative process through the links below!
 > PD2: https://docs.google.com/document/d/1kqwIBJdXdCl_96EVQiOvW3A3YpRi1yrm6_MVWnMO3Mo/edit?usp=sharing
 
 GitHub Rep: Andrei Benlot
+
 Organizer: Jess Abanilla
 
