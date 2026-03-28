@@ -99,36 +99,29 @@ public class FornixMap2 implements KeyListener{
     }
 }
     
-    private void openCave(){
-
-    if(collectedLetters.length() < 4){
-        JOptionPane.showMessageDialog(
-            frame,
-            "The cave is sealed.\nYou need all 4 letters."
-        );
+    private void openCave() {
+    if (collectedLetters.length() < 4) {
+        JOptionPane.showMessageDialog(frame, "The cave is sealed.\nYou need all 4 letters.");
         return;
     }
 
-    String input = JOptionPane.showInputDialog(
-        frame,
-        "The cave requires a password.\nEnter password:"
-    );
+    String input = JOptionPane.showInputDialog(frame, "The cave requires a password.\nEnter password:");
+    if (input == null) return;
 
-    if(input == null) return;
-
-    if(input.equalsIgnoreCase("KODI")){
-        JOptionPane.showMessageDialog(
-            frame,
-            "The cave opens... ✨\nLevel complete!"
-        );
-        
-        // 1. Close the current Level 1 window
-        frame.dispose(); 
-
-        // 2. Launch Level 2
-        FornixMap4 level2 = new FornixMap4();
-        level2.setFrame();
-        
+    if (input.equalsIgnoreCase("KODI")) {
+        try {
+            // Initialize Level 2
+            FornixMap4 level2 = new FornixMap4();
+            level2.setFrame();
+            
+            // Only close current window if Level 2 loads successfully
+            frame.dispose(); 
+            
+            JOptionPane.showMessageDialog(null, "The cave opens... ✨\nLevel 2 Loaded!");
+        } catch (Exception e) {
+            // catches whether it loads or nah
+            JOptionPane.showMessageDialog(frame, "Error loading Level 2: " + e.getMessage());
+        }
     } else {
         JOptionPane.showMessageDialog(frame, "Wrong password ❌");
     }
@@ -151,23 +144,23 @@ public class FornixMap2 implements KeyListener{
     
     public FornixMap2 (){
         frame=new JFrame();
-        grass=new ImageIcon("Images/fornix/grass.jpg");
-        pathway=new ImageIcon("Images/fornix/pathway.jpg");
-        cave=new ImageIcon("Images/fornix/cave.jpg");
-        torch=new ImageIcon("Images/fornix/torch.jpg");
-        tree=new ImageIcon("Images/fornix/tree.jpg");
-        sign=new ImageIcon("Images/fornix/sign.jpg");
+        grass=new ImageIcon("PD Assets/Level 2 (Forest)/fornix/grass.jpg");
+        pathway=new ImageIcon("PD Assets/Level 2 (Forest)/fornix/pathway.jpg");
+        cave=new ImageIcon("PD Assets/Level 2 (Forest)/fornix/cave.jpg");
+        torch=new ImageIcon("PD Assets/Level 2 (Forest)/fornix/torch.jpg");
+        tree=new ImageIcon("PD Assets/Level 2 (Forest)/fornix/tree.jpg");
+        sign=new ImageIcon("PD Assets/Level 2 (Forest)/fornix/sign.jpg");
         
         
         //sprites
-        frontS=new ImageIcon("Images/fornix/sprites/frontStand.png");
-        frontW=new ImageIcon("Images/fornix/sprites/frontWalk.png");
-        leftS=new ImageIcon("Images/fornix/sprites/leftStand.png");
-        leftW=new ImageIcon("Images/fornix/sprites/leftWalk.png");
-        rightS=new ImageIcon("Images/fornix/sprites/rightStand.png");
-        rightW=new ImageIcon("Images/fornix/sprites/rightWalk.png");
-        backS=new ImageIcon("Images/fornix/sprites/backStand.png");
-        backW=new ImageIcon("Images/fornix/sprites/backWalk.png");
+        frontS=new ImageIcon("PD Assets/Cody's Character/frontstand.png");
+        frontW=new ImageIcon("PD Assets/Cody's Character/frontwalk.png");
+        leftS=new ImageIcon("PD Assets/Cody's Character/leftstand.png");
+        leftW=new ImageIcon("PD Assets/Cody's Character/leftwalk.png");
+        rightS=new ImageIcon("PD Assets/Cody's Character/rightstand.png");
+        rightW=new ImageIcon("PD Assets/Cody's Character/rightwalk.png");
+        backS=new ImageIcon("PD Assets/Cody's Character/backstand.png");
+        backW=new ImageIcon("PD Assets/Cody's Character/backwalk.png");
         
         grass=new ImageIcon(grass.getImage().getScaledInstance((frameWidth/mapWidth), (frameHeight/mapHeight), Image.SCALE_DEFAULT));
         pathway=new ImageIcon(pathway.getImage().getScaledInstance((frameWidth/mapWidth), (frameHeight/mapHeight), Image.SCALE_DEFAULT));
