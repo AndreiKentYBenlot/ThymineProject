@@ -185,26 +185,26 @@ public class Map_3 implements KeyListener, ActionListener {
         nextB = new JButton("Next");
         exitB = new JButton("Back");
 
-        prisonWall1 = new ImageIcon("Images/prisonWall1.png");
-        prisonFloor = new ImageIcon("Images/prisonFloor.png");
-        prisonWall2 = new ImageIcon("Images/prisonWall2.png");
-        prisonWall3 = new ImageIcon("Images/prisonWall3.png");
-        prisonWallTop = new ImageIcon("Images/prisonWallTop.png");
-        prisonWallTop2 = new ImageIcon("Images/prisonWallTop2.png");
-        prisonDoor = new ImageIcon("Images/prisonDoor.png");
-        prisonDoorOpen = new ImageIcon("Images/openDoor.png");
-        menuButton = new ImageIcon("Images/menuButton.png");
+        prisonWall1 = new ImageIcon("PD Assets/Level 1 (Desert)/prisonWall1.png");
+        prisonFloor = new ImageIcon("PD Assets/Level 1 (Desert)/prisonFloor.png");
+        prisonWall2 = new ImageIcon("PD Assets/Level 1 (Desert)/prisonWall2.png");
+        prisonWall3 = new ImageIcon("PD Assets/Level 1 (Desert)/prisonWall3.png");
+        prisonWallTop = new ImageIcon("PD Assets/Level 1 (Desert)/prisonWallTop.png");
+        prisonWallTop2 = new ImageIcon("PD Assets/Level 1 (Desert)/prisonWallTop2.png");
+        prisonDoor = new ImageIcon("PD Assets/Level 1 (Desert)/prisonDoor.png");
+        prisonDoorOpen = new ImageIcon("PD Assets/Level 1 (Desert)/openDoor.png");
+        menuButton = new ImageIcon("PD Assets/Level 1 (Desert)/menuButton.png");
 
-        frontS = new ImageIcon("Images/frontstand.png");
-        frontW = new ImageIcon("Images/frontwalk.png");
-        leftS = new ImageIcon("Images/leftstand.png");
-        leftW = new ImageIcon("Images/leftwalk.png");
-        rightS = new ImageIcon("Images/rightstand.png");
-        rightW = new ImageIcon("Images/rightwalk.png");
-        backS = new ImageIcon("Images/backstand.png");
-        backW = new ImageIcon("Images/backwalk.png");
-        npc1 = new ImageIcon("Images/guard1.png");
-        npc2 = new ImageIcon("Images/guard2.png");
+        frontS = new ImageIcon("PD Assets/Cody's Character/frontstand.png");
+        frontW = new ImageIcon("PD Assets/Cody's Character/frontwalk.png");
+        leftS = new ImageIcon("PD Assets/Cody's Character/leftstand.png");
+        leftW = new ImageIcon("PD Assets/Cody's Character/leftwalk.png");
+        rightS = new ImageIcon("PD Assets/Cody's Character/rightstand.png");
+        rightW = new ImageIcon("PD Assets/Cody's Character/rightwalk.png");
+        backS = new ImageIcon("PD Assets/Cody's Character/backstand.png");
+        backW = new ImageIcon("PD Assets/Cody's Character/backwalk.png");
+        npc1 = new ImageIcon("PD Assets/Level 1 (Desert)/guard1.png");
+        npc2 = new ImageIcon("PD Assets/Level 1 (Desert)guard2.png");
 
         prisonWall1 = new ImageIcon(prisonWall1.getImage().getScaledInstance((frameWidth / mapWidth), (frameHeight / mapHeight), Image.SCALE_DEFAULT));
         prisonWall2 = new ImageIcon(prisonWall2.getImage().getScaledInstance((frameWidth / mapWidth), (frameHeight / mapHeight), Image.SCALE_DEFAULT));
