@@ -117,25 +117,18 @@ public class FornixMap2 implements KeyListener{
     if(input == null) return;
 
     if(input.equalsIgnoreCase("KODI")){
-        try {
-                // Attempt to launch Level 2
-                FornixMap4 level2 = new FornixMap4();
-                level2.setFrame();
-                
-                // Only close the current window if Level 2 starts successfully
-                frame.dispose(); 
-                
-                JOptionPane.showMessageDialog(null, "The cave opens... ✨\nLevel 2 Loaded!");
-            } catch (Exception e) {
-                // If Level 2 fails to load (e.g., NullPointerException, Missing files)
-                JOptionPane.showMessageDialog(
-                    frame, 
-                    "Failed to load Level 2!\nError: " + e.getMessage(), 
-                    "System Error", 
-                    JOptionPane.ERROR_MESSAGE
-                );
-                e.printStackTrace(); // Useful for debugging in the console
-            }
+        JOptionPane.showMessageDialog(
+            frame,
+            "The cave opens... ✨\nLevel complete!"
+        );
+        
+        // 1. Close the current Level 1 window
+        frame.dispose(); 
+
+        // 2. Launch Level 2
+        FornixMap4 level2 = new FornixMap4();
+        level2.setFrame();
+        
     } else {
         JOptionPane.showMessageDialog(frame, "Wrong password ❌");
     }
@@ -328,173 +321,117 @@ public class FornixMap2 implements KeyListener{
         
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+@Override
+public void keyPressed(KeyEvent e) {
+    int next = -1;
 
-    // prevent moving out of bounds
-    if(characterPosition % mapWidth == mapWidth - 1) return;
-
-    int next = characterPosition + 1;
-
-    // BLOCKED tiles (tree, sign, or cave)
-    if(mapLayout[next] == 0 || mapLayout[next] == 3 || mapLayout[next] == 4){
-        toggleSprite(rightW, rightS);
+    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        next = characterPosition + 1;
+        if(next >= mapLayout.length || characterPosition % mapWidth == mapWidth - 1) next = -1;
+    } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        next = characterPosition - 1;
+        if(next < 0 || characterPosition % mapWidth == 0) next = -1;
+    } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+        next = characterPosition - mapWidth;
+        if(next < 0) next = -1;
+    } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+        next = characterPosition + mapWidth;
+        if(next >= mapLayout.length) next = -1;
     }
-    else{
-        character[characterPosition].setIcon(null);
-        character[next].setIcon(characterMode == 0 ? rightW : rightS);
-        toggleMode();
-        characterPosition = next;
-    }
-}
 
-        else if(e.getKeyCode() == KeyEvent.VK_LEFT){
-
-        if(characterPosition % mapWidth == 0) return;
-
-        int next = characterPosition - 1;
-
-        if(mapLayout[next] == 0 || mapLayout[next] == 3 || mapLayout[next] == 4){
-            toggleSprite(leftW, leftS);
-        }
-        else{
+    //  Exception handling for the Sign Interaction
+    if (next != -1) {
+        try {
+            checkObstacle(next);
+            
+            // If no exception was thrown, move the character normally
             character[characterPosition].setIcon(null);
-            character[next].setIcon(characterMode == 0 ? leftW : leftS);
-            toggleMode();
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT) character[next].setIcon(characterMode == 0 ? rightW : rightS);
+            else if (e.getKeyCode() == KeyEvent.VK_LEFT) character[next].setIcon(characterMode == 0 ? leftW : leftS);
+            else if (e.getKeyCode() == KeyEvent.VK_UP) character[next].setIcon(characterMode == 0 ? backW : backS);
+            else if (e.getKeyCode() == KeyEvent.VK_DOWN) character[next].setIcon(characterMode == 0 ? frontW : frontS);
+            
             characterPosition = next;
+            toggleMode();
+
+        } catch (IllegalAccessException ex) {
+            if (ex.getMessage().equals("SIGN_HIT")) {
+                JOptionPane.showMessageDialog(frame, "Press SPACEBAR to read the sign!");
+            }
+        } catch (RuntimeException ex) {
+            System.out.println("Path blocked.");
         }
     }
 
-
-        else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-
-    int next = characterPosition + mapWidth;
-    if(next >= mapLayout.length) return;
-
-    if(mapLayout[next] == 0 || mapLayout[next] == 3 || mapLayout[next] == 4){
-        toggleSprite(frontW, frontS);
-    }
-    else{
-        character[characterPosition].setIcon(null);
-        character[next].setIcon(characterMode == 0 ? frontW : frontS);
-        toggleMode();
-        characterPosition = next;
+    // 3. Spacebar interaction
+    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+        checkForSign();
+        checkForCave();
     }
 }
 
-        else if(e.getKeyCode() == KeyEvent.VK_UP){
-
-    int next = characterPosition - mapWidth;
-    if(next < 0) return;
-
-    if(mapLayout[next] == 0 || mapLayout[next] == 3 || mapLayout[next] == 4){
-        toggleSprite(backW, backS);
+    private void checkObstacle(int nextIndex) throws IllegalAccessException {
+    int tile = mapLayout[nextIndex];
+    
+    // If the player hits a sign (ID 4), throw the exception
+    if (tile == 4) {
+        throw new IllegalAccessException("SIGN_HIT");
     }
-    else{
-        character[characterPosition].setIcon(null);
-        character[next].setIcon(characterMode == 0 ? backW : backS);
-        toggleMode();
-        characterPosition = next;
+    
+    // If the player hits a tree (0) or cave (3), we don't need an exception, 
+    // we just use this to block the move in the 'if' statement below.
+    if (tile == 0 || tile == 3 || tile == 5) {
+        throw new RuntimeException("BLOCKED"); 
     }
 }
-    else if(e.getKeyCode() == KeyEvent.VK_SPACE){
-    checkForSign();
-    checkForCave();
-}
 
+    private void checkForSign() {
+        int[] directions = {
+            characterPosition + 1,
+            characterPosition - 1,
+            characterPosition + mapWidth,
+            characterPosition - mapWidth
+        };
 
-        
-}
-    private void checkForSign(){
-    int[] directions = {
-        characterPosition + 1,
-        characterPosition - 1,
-        characterPosition + mapWidth,
-        characterPosition - mapWidth
-    };
-
-    for(int next : directions){
-        if(next >= 0 && next < mapLayout.length){
-            if(mapLayout[next] == 4 && signQuestions.containsKey(next)){
-                showQuestion(signQuestions.get(next));
-                break;
+        for (int next : directions) {
+            if (next >= 0 && next < mapLayout.length) {
+                if (mapLayout[next] == 4 && signQuestions.containsKey(next)) {
+                    showQuestion(signQuestions.get(next));
+                    break;
+                }
             }
         }
     }
-}
-
 
     @Override
-    public void keyReleased(KeyEvent e) {
-        
-    }
+    public void keyReleased(KeyEvent e) {}
 
     private void toggleMode() {
-    characterMode = (characterMode == 0) ? 1 : 0;
-}
-
-private void toggleSprite(ImageIcon walk, ImageIcon stand) {
-    character[characterPosition].setIcon(characterMode == 0 ? walk : stand);
-    toggleMode();
-}
-
-private void rewardLetter(char letter){
-    if(collectedLetters.indexOf(String.valueOf(letter)) == -1){
-        collectedLetters.append(letter);
-
-        JOptionPane.showMessageDialog(
-            frame,
-            "Correct! ✅\nYou obtained letter: " + letter +
-            "\nCollected letters: " + collectedLetters
-        );
+        characterMode = (characterMode == 0) ? 1 : 0;
     }
-}
 
-private void showQuestion(Question q){
+    private void toggleSprite(ImageIcon walk, ImageIcon stand) {
+        character[characterPosition].setIcon(characterMode == 0 ? walk : stand);
+        toggleMode();
+    }
 
-    if(q.type == QuestionType.MULTIPLE_CHOICE){
-
-        int answer = JOptionPane.showOptionDialog(
-            frame,
-            q.text,
-            "Sign Question",
-            JOptionPane.DEFAULT_OPTION,
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            q.choices,
-            q.choices[0]
-        );
-
-        if(answer == q.correctIndex){
-            rewardLetter(q.rewardLetter);
-        } else {
-            // Only say wrong, don't show the correct answer
-            JOptionPane.showMessageDialog(
-                frame,
-                "Wrong ❌"
-            );
-        }
-
-    } else { // SHORT ANSWER
-
-        String input = JOptionPane.showInputDialog(
-            frame,
-            q.text,
-            "Type your answer"
-        );
-
-        if(input == null) return;
-
-        if(input.trim().equalsIgnoreCase(q.correctAnswer)){
-            rewardLetter(q.rewardLetter);
-        } else {
-            // Only say wrong, don't show the correct answer
-            JOptionPane.showMessageDialog(
-                frame,
-                "Wrong ❌"
-            );
+    private void rewardLetter(char letter) {
+        if (collectedLetters.indexOf(String.valueOf(letter)) == -1) {
+            collectedLetters.append(letter);
+            JOptionPane.showMessageDialog(frame, "Correct! ✅\nYou obtained letter: " + letter + "\nCollected letters: " + collectedLetters);
         }
     }
-}
+
+    private void showQuestion(Question q) {
+        if (q.type == QuestionType.MULTIPLE_CHOICE) {
+            int answer = JOptionPane.showOptionDialog(frame, q.text, "Sign Question", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, q.choices, q.choices[0]);
+            if (answer == q.correctIndex) rewardLetter(q.rewardLetter);
+            else JOptionPane.showMessageDialog(frame, "Wrong ❌");
+        } else {
+            String input = JOptionPane.showInputDialog(frame, q.text, "Type your answer");
+            if (input == null) return;
+            if (input.trim().equalsIgnoreCase(q.correctAnswer)) rewardLetter(q.rewardLetter);
+            else JOptionPane.showMessageDialog(frame, "Wrong ❌");
+        }
+    }
 }
