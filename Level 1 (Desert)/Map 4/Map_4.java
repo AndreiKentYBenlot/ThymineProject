@@ -8,6 +8,7 @@ package Map_4;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class Map_4 implements KeyListener{
     JFrame frame;
@@ -422,15 +423,23 @@ public class Map_4 implements KeyListener{
                             JOptionPane.INFORMATION_MESSAGE);
                     int dynamiteAmt=0;
                     do{
-                        JOptionPane.showMessageDialog(frame,
-                                "The crack is 80cm in diameter, and each Dynamite has a blast radius of 10 cm. Each Dynamite added will increase the blast radius by 10cm. "
-                                        + "There's also an alarm 50cm away from the center of the crack, and I have to be sure not to set it off.",
-                                "Wall",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        String input= JOptionPane.showInputDialog(frame,
-                                "How much Dynamite should I use? (Hint: A = πr²)");
-                        dynamiteAmt=Integer.parseInt(input);
-                    
+                        try{
+                            JOptionPane.showMessageDialog(frame,
+                                    "The crack is 80cm in diameter, and each Dynamite has a blast radius of 10 cm. Each Dynamite added will increase the blast radius by 10cm. "
+                                            + "There's also an alarm 50cm away from the center of the crack, and I have to be sure not to set it off.",
+                                    "Wall",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            String input= JOptionPane.showInputDialog(frame,
+                                    "How much Dynamite should I use? (Hint: A = πr²)");
+                            dynamiteAmt=Integer.parseInt(input);
+                        }
+                        catch (NumberFormatException E){
+                            JOptionPane.showMessageDialog(frame,
+                                    "I need a number of dynamite to use. This won't work.",
+                                    "Wall",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        
                         if(dynamiteAmt<4){
                             JOptionPane.showMessageDialog(frame,
                                     "This might not be strong enough to break the wall open.. I should think about this more.",
@@ -484,6 +493,7 @@ public class Map_4 implements KeyListener{
     }
 }
 //the keyListener counts as override for our oop concept <3
+//exception handling: number format exception for answer input
 
 //objective: one of the crates has contraband in it, and the character finds dynamite
 // the player must get the correct amount of dynamite to blow up the cracked wall but to also not set off alarms
