@@ -378,8 +378,6 @@ public void keyPressed(KeyEvent e) {
         throw new IllegalAccessException("SIGN_HIT");
     }
     
-    // If the player hits a tree (0) or cave (3), we don't need an exception, 
-    // we just use this to block the move in the 'if' statement below.
     if (tile == 0 || tile == 3 || tile == 5) {
         throw new RuntimeException("BLOCKED"); 
     }
