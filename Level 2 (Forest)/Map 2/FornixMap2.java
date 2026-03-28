@@ -144,11 +144,11 @@ public class FornixMap2 implements KeyListener{
     
     public FornixMap2 (){
         frame=new JFrame();
-        grass=new ImageIcon("PD Assets/Level 2 (Forest)/fornix/grass.jpg");
-        pathway=new ImageIcon("PD Assets/Level 2 (Forest)/fornix/pathway.jpg");
-        cave=new ImageIcon("PD Assets/Level 2 (Forest)/fornix/cave.jpg");
-        torch=new ImageIcon("PD Assets/Level 2 (Forest)/fornix/torch.jpg");
-        tree=new ImageIcon("PD Assets/Level 2 (Forest)/fornix/tree.jpg");
+        grass=new ImageIcon("PD Assets/Level 2 (Forest)/fornix_map2/grass.jpg");
+        pathway=new ImageIcon("PD Assets/Level 2 (Forest)/fornix_map2/pathway.jpg");
+        cave=new ImageIcon("PD Assets/Level 2 (Forest)/fornix_map2/cave.jpg");
+        torch=new ImageIcon("PD Assets/Level 2 (Forest)/fornix_map2/torch.jpg");
+        tree=new ImageIcon("PD Assets/Level 2 (Forest)/fornix_map2/tree.jpg");
         sign=new ImageIcon("PD Assets/Level 2 (Forest)/fornix/sign.jpg");
         
         
