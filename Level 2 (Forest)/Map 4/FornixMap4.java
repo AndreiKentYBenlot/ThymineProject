@@ -65,22 +65,22 @@ public class FornixMap4 extends GameMap implements KeyListener{
         mapName = "The Underground Library";
         frame=new JFrame();
         characterPosition=-1;
-        wall=new ImageIcon("Images/fornix_map2/caveWall.png");
-        tile=new ImageIcon("Images/fornix_map2/whole1.png");
-        tree=new ImageIcon("Images/fornix_map2/tree.jpg");
-        sign=new ImageIcon("Images/fornix_map2/sign.png");
-        bookSlf= new ImageIcon("Images/fornix_map2/bookshelf.jpg");
-        openedTree= new ImageIcon("Images/fornix_map2/openedTree.png");
+        wall=new ImageIcon("PD Assets/Level 2 (Forest)/fornix_map4/caveWall.png");
+        tile=new ImageIcon("PD Assets/Level 2 (Forest)/fornix_map4/whole1.png");
+        tree=new ImageIcon("PD Assets/Level 2 (Forest)/fornix_map4/tree.jpg");
+        sign=new ImageIcon("PD Assets/Level 2 (Forest)/fornix_map4/sign.png");
+        bookSlf= new ImageIcon("PD Assets/Level 2 (Forest)/fornix_map4/bookshelf.jpg");
+        openedTree= new ImageIcon("PD Assets/Level 2 (Forest)/fornix_map4/openedTree.png");
         
         //sprites
-        frontS=new ImageIcon("Images/fornix/sprites/frontStand.png");
-        frontW=new ImageIcon("Images/fornix/sprites/frontWalk.png");
-        leftS=new ImageIcon("Images/fornix/sprites/leftStand.png");
-        leftW=new ImageIcon("Images/fornix/sprites/leftWalk.png");
-        rightS=new ImageIcon("Images/fornix/sprites/rightStand.png");
-        rightW=new ImageIcon("Images/fornix/sprites/rightWalk.png");
-        backS=new ImageIcon("Images/fornix/sprites/backStand.png");
-        backW=new ImageIcon("Images/fornix/sprites/backWalk.png");
+        frontS=new ImageIcon("PD Assets/Cody's Character/frontstand.png");
+        frontW=new ImageIcon("PD Assets/Cody's Character/frontwalk.png");
+        leftS=new ImageIcon("PD Assets/Cody's Character/leftstand.png");
+        leftW=new ImageIcon("PD Assets/Cody's Character/leftwalk.png");
+        rightS=new ImageIcon("PD Assets/Cody's Character/rightstand.png");
+        rightW=new ImageIcon("PD Assets/Cody's Character/rightwalk.png");
+        backS=new ImageIcon("PD Assets/Cody's Character/backstand.png");
+        backW=new ImageIcon("PD Assets/Cody's Character/backwalk.png");
         
         bookSlf = new ImageIcon(bookSlf.getImage().getScaledInstance((frameWidth/mapWidth), (frameHeight/mapHeight), Image.SCALE_DEFAULT));
         wall=new ImageIcon(wall.getImage().getScaledInstance((frameWidth/mapWidth), (frameHeight/mapHeight), Image.SCALE_DEFAULT));
