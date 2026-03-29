@@ -1,0 +1,10 @@
+package Q4P7_Tester;
+
+import Q4P7_Game.Q4P7;
+
+public class CandyCityMap2Tester {
+    public static void main(String[] args) {
+        Q4P7 game = new Q4P7();
+        game.setFrame();
+    }
+}
