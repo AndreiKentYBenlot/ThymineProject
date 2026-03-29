@@ -61,29 +61,29 @@ public class Pd5 implements KeyListener {
         objectives=0; 
         moveIndex = 0;
 
-        mapFloor = new ImageIcon("Pictures/floor.png"); 
-        door = new ImageIcon("Pictures/mapDoor.png"); 
-        wall1 = new ImageIcon("Pictures/wall1.png"); 
-        wall2 = new ImageIcon("Pictures/wall2.png");  
-        wall3 = new ImageIcon("Pictures/wall3.png");  
-        wall4 = new ImageIcon("Pictures/wall4.png"); 
-        corner1 = new ImageIcon("Pictures/cornerBottomLeft.jpg"); 
-        corner2 = new ImageIcon("Pictures/cornerBottomRight.jpg"); 
-        corner3 = new ImageIcon("Pictures/cornerTopLeft.jpg"); 
-        corner4 = new ImageIcon("Pictures/cornerTopRight.jpg"); 
-        box = new ImageIcon("Pictures/box.png"); 
-        objectiveNote = new ImageIcon("Pictures/message.png"); 
-        questionsTile = new ImageIcon("Pictures/question.png");
+        mapFloor = new ImageIcon("PD Assets/floor.png"); 
+        door = new ImageIcon("PD Assets/mapDoor.png"); 
+        wall1 = new ImageIcon("PD Assets/wall1.png"); 
+        wall2 = new ImageIcon("PD Assets/wall2.png");  
+        wall3 = new ImageIcon("PD Assets/wall3.png");  
+        wall4 = new ImageIcon("PD Assets/wall4.png"); 
+        corner1 = new ImageIcon("PD Assets/cornerBottomLeft.jpg"); 
+        corner2 = new ImageIcon("PD Assets/cornerBottomRight.jpg"); 
+        corner3 = new ImageIcon("PD Assets/cornerTopLeft.jpg"); 
+        corner4 = new ImageIcon("PD Assets/cornerTopRight.jpg"); 
+        box = new ImageIcon("PD Assets/box.png"); 
+        objectiveNote = new ImageIcon("PD Assets/message.png"); 
+        questionsTile = new ImageIcon("PD Assets/question.png");
         
         
-        frontS=new ImageIcon("Pictures/frontstand.png");
-        frontW=new ImageIcon("Pictures/frontwalk.png");
-        leftS=new ImageIcon("Pictures/leftstand.png");
-        leftW=new ImageIcon("Pictures/leftwalk.png");
-        rightS=new ImageIcon("Pictures/rightstand.png");
-        rightW=new ImageIcon("Pictures/rightwalk.png");
-        backS=new ImageIcon("Pictures/backstand.png");
-        backW=new ImageIcon("Pictures/backwalk.png");
+        frontS=new ImageIcon("PD Assets/Cody's Character/frontstand.png");
+        frontW=new ImageIcon("PD Assets/Cody's Character/frontwalk.png");
+        leftS=new ImageIcon("PD Assets/Cody's Character/leftstand.png");
+        leftW=new ImageIcon("PD Assets/Cody's Character/leftwalk.png");
+        rightS=new ImageIcon("PD Assets/Cody's Character/rightstand.png");
+        rightW=new ImageIcon("PD Assets/Cody's Character/rightwalk.png");
+        backS=new ImageIcon("PD Assets/Cody's Character/backstand.png");
+        backW=new ImageIcon("PD Assets/Cody's Character/backwalk.png");
         
         mapFloor=new ImageIcon(mapFloor.getImage().getScaledInstance((frameWidth/mapWidth), (frameHeight/mapHeight), Image.SCALE_DEFAULT));
         wall1=new ImageIcon(wall1.getImage().getScaledInstance((frameWidth/mapWidth), (frameHeight/mapHeight), Image.SCALE_DEFAULT)); 
