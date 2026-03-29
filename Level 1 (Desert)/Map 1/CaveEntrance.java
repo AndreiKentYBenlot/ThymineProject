@@ -44,14 +44,14 @@ public class CaveEntrance implements KeyListener {
         plant2 = new ImageIcon("PD Assets/plant2.png");
         torch = new ImageIcon("PD Assets/torch.png");
         
-        frontS=new ImageIcon("PD Assets/frontstand.png");
-        frontW=new ImageIcon("PD Assets/frontwalk.png");
-        leftS=new ImageIcon("PD Assets/leftstand.png");
-        leftW=new ImageIcon("PD Assets/leftwalk.png");
-        rightS=new ImageIcon("PD Assets/rightstand.png");
-        rightW=new ImageIcon("PD Assets/rightwalk.png");
-        backS=new ImageIcon("PD Assets/backstand.png");
-        backW=new ImageIcon("PD Assets/backwalk.png");
+        frontS=new ImageIcon("PD Assets/Cody's Character/frontstand.png");
+        frontW=new ImageIcon("PD Assets/Cody's Character/frontwalk.png");
+        leftS=new ImageIcon("PD Assets/Cody's Character/leftstand.png");
+        leftW=new ImageIcon("PD Assets/Cody's Character/leftwalk.png");
+        rightS=new ImageIcon("PD Assets/Cody's Character/rightstand.png");
+        rightW=new ImageIcon("PD Assets/Cody's Character/rightwalk.png");
+        backS=new ImageIcon("PD Assets/Cody's Character/backstand.png");
+        backW=new ImageIcon("PD Assets/Cody's Character/backwalk.png");
 
         sand = new ImageIcon(sand.getImage().getScaledInstance((frameWidth/15),(frameHeight/9), Image.SCALE_DEFAULT));
         wall = new ImageIcon(wall.getImage().getScaledInstance((frameWidth/15),(frameHeight/9), Image.SCALE_DEFAULT));
