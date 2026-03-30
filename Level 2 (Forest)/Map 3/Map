@@ -1,0 +1,63 @@
+
+package Q2;
+*Arthur Gonzales
+import java.awt.*;
+import javax.swing.*;
+
+public class PE5 extends JFrame {
+
+    int tileSize = 70;
+
+    ImageIcon floorImg, wallImg;
+
+    JLabel[] tiles;
+    int[] mapLayout;
+    int mapWidth = 6;
+    int mapHeight = 6;
+    JLayeredPane layeredPane;
+
+    public static void main(String[] args) {
+        new PE5();
+    }
+
+    public PE5() {
+        setTitle("PE5 Game Map");
+        setSize(mapWidth * tileSize, mapHeight * tileSize);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        layeredPane = new JLayeredPane();
+        layeredPane.setPreferredSize(new Dimension(mapWidth * tileSize, mapHeight * tileSize));
+        layeredPane.setLayout(null);
+        add(layeredPane);
+
+        floorImg = new ImageIcon(new ImageIcon("Images/floor.png")
+                .getImage().getScaledInstance(tileSize, tileSize, Image.SCALE_SMOOTH));
+
+        wallImg = new ImageIcon(new ImageIcon("Images/wall.png")
+                .getImage().getScaledInstance(tileSize, tileSize, Image.SCALE_SMOOTH));
+
+        mapLayout = new int[]{
+                0,0,0,0,0,0,
+                0,1,1,1,1,0,
+                0,1,1,1,1,0,
+                0,1,1,1,1,0,
+                0,1,1,1,1,0,
+                0,0,0,0,0,0
+        };
+
+        tiles = new JLabel[mapWidth * mapHeight];
+
+        for (int i = 0; i < tiles.length; i++) {
+            tiles[i] = new JLabel(mapLayout[i] == 0 ? wallImg : floorImg);
+            int x = i % mapWidth;
+            int y = i / mapWidth;
+            tiles[i].setBounds(x * tileSize, y * tileSize, tileSize, tileSize);
+            layeredPane.add(tiles[i], JLayeredPane.DEFAULT_LAYER);
+        }
+
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+}
