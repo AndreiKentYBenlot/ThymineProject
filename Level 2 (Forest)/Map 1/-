@@ -1,1 +1,222 @@
+package Q3;
+*Arthur, Gonzales
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class DungeonMap extends JFrame implements KeyListener {
+
+    int tileSize = 32;
+    int mapWidth = 10;
+    int mapHeight = 10;
+
+    int playerX = 1;
+    int playerY = 1;
+
+    int level = 1;
+
+    JLabel player;
+    JLabel exitDoor;
+    JLabel[] tiles;
+
+    ImageIcon floor;
+    ImageIcon wall;
+    ImageIcon doorImg;
+
+    ImageIcon playerUp;
+    ImageIcon playerDown;
+    ImageIcon playerLeft;
+    ImageIcon playerRight;
+
+    JLayeredPane pane;
+
+
+    int[] map = {
+        0,0,0,0,0,0,0,0,0,0,
+        0,1,1,1,1,1,1,1,1,0,
+        0,1,0,0,0,0,0,0,1,0,
+        0,1,0,1,1,1,1,0,1,0,
+        0,1,0,1,0,0,1,0,1,0,
+        0,1,0,1,1,0,1,0,1,0,
+        0,1,0,0,1,0,1,0,1,0,
+        0,1,1,1,1,0,1,1,1,0,
+        0,1,1,1,1,1,1,1,1,0,
+        0,0,0,0,0,0,0,0,0,0
+    };
+
+
+    String[][] questions = {
+        {"What is Java?",
+         "A programming language",
+         "A coffee brand",
+         "A game console",
+         "A programming language"},
+
+        {"What does HTML stand for?",
+         "HyperText Markup Language",
+         "HighText Machine Language",
+         "HyperTool Multi Language",
+         "HyperText Markup Language"},
+
+        {"Which keyword creates a class?",
+         "class",
+         "void",
+         "public",
+         "class"}
+    };
+
+    public static void main(String[] args) {
+        new DungeonMap();
+    }
+
+    public DungeonMap() {
+
+        setTitle("Dungeon Quiz Game");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        pane = new JLayeredPane();
+        pane.setPreferredSize(new Dimension(mapWidth * tileSize, mapHeight * tileSize));
+        pane.setLayout(null);
+        add(pane);
+
+        floor = loadImage("Images/dungeon_floor.png");
+        wall = loadImage("Images/dungeon_wall.png");
+        doorImg = loadImage("Images/door.png");
+
+        playerUp = loadImage("Images/player_up.png");
+        playerDown = loadImage("Images/player_down.png");
+        playerLeft = loadImage("Images/player_left.png");
+        playerRight = loadImage("Images/player_right.png");
+
+        tiles = new JLabel[mapWidth * mapHeight];
+
+        drawMap();
+
+        
+        exitDoor = new JLabel(doorImg);
+        exitDoor.setBounds(8 * tileSize, 8 * tileSize, tileSize, tileSize);
+        pane.add(exitDoor, JLayeredPane.PALETTE_LAYER);
+
+        player = new JLabel(playerDown);
+        player.setBounds(playerX * tileSize, playerY * tileSize, tileSize, tileSize);
+        pane.add(player, JLayeredPane.MODAL_LAYER);
+
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+
+        pane.addKeyListener(this);
+        pane.setFocusable(true);
+        pane.requestFocus();
+    }
+
+    void drawMap() {
+        for (int i = 0; i < map.length; i++) {
+
+            if (map[i] == 0)
+                tiles[i] = new JLabel(wall);
+            else
+                tiles[i] = new JLabel(floor);
+
+            int x = i % mapWidth;
+            int y = i / mapWidth;
+
+            tiles[i].setBounds(x * tileSize, y * tileSize, tileSize, tileSize);
+            pane.add(tiles[i], JLayeredPane.DEFAULT_LAYER);
+        }
+    }
+
+    ImageIcon loadImage(String path) {
+        Image img = new ImageIcon(path).getImage();
+        Image scaled = img.getScaledInstance(tileSize, tileSize, Image.SCALE_SMOOTH);
+        return new ImageIcon(scaled);
+    }
+
+    void movePlayer(int dx, int dy) {
+
+        int nextX = playerX + dx;
+        int nextY = playerY + dy;
+
+        if (map[nextY * mapWidth + nextX] == 1) {
+            playerX = nextX;
+            playerY = nextY;
+            player.setLocation(playerX * tileSize, playerY * tileSize);
+        }
+    }
+
+    void askQuestion() {
+
+        String[] q = questions[level - 1];
+
+        String[] options = { q[1], q[2], q[3] };
+
+        int choice = JOptionPane.showOptionDialog(
+                this,
+                q[0],
+                "Level " + level,
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+
+        if (choice >= 0 && options[choice].equals(q[4])) {
+
+            level++;
+
+            if (level > questions.length) {
+                JOptionPane.showMessageDialog(this,
+                        "You completed all levels!");
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Correct! Welcome to Level " + level);
+                resetPlayer();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Wrong answer! Try again.");
+        }
+    }
+
+    void resetPlayer() {
+        playerX = 1;
+        playerY = 1;
+        player.setLocation(playerX * tileSize, playerY * tileSize);
+    }
+
+    public void keyPressed(KeyEvent e) {
+
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            player.setIcon(playerUp);
+            movePlayer(0, -1);
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            player.setIcon(playerDown);
+            movePlayer(0, 1);
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            player.setIcon(playerLeft);
+            movePlayer(-1, 0);
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            player.setIcon(playerRight);
+            movePlayer(1, 0);
+        }
+
+
+        if (player.getBounds().intersects(exitDoor.getBounds())) {
+            askQuestion();
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {}
+}
 
