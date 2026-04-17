@@ -44,14 +44,14 @@ public class CaveEntrance implements KeyListener {
         plant2 = new ImageIcon("PD Assets/plant2.png");
         torch = new ImageIcon("PD Assets/torch.png");
         
-        frontS=new ImageIcon("PD Assets/Cody's Character/frontstand.png");
-        frontW=new ImageIcon("PD Assets/Cody's Character/frontwalk.png");
-        leftS=new ImageIcon("PD Assets/Cody's Character/leftstand.png");
-        leftW=new ImageIcon("PD Assets/Cody's Character/leftwalk.png");
-        rightS=new ImageIcon("PD Assets/Cody's Character/rightstand.png");
-        rightW=new ImageIcon("PD Assets/Cody's Character/rightwalk.png");
-        backS=new ImageIcon("PD Assets/Cody's Character/backstand.png");
-        backW=new ImageIcon("PD Assets/Cody's Character/backwalk.png");
+        frontS=new ImageIcon("PD Assets/frontstand.png");
+        frontW=new ImageIcon("PD Assets/frontwalk.png");
+        leftS=new ImageIcon("PD Assets/leftstand.png");
+        leftW=new ImageIcon("PD Assets/leftwalk.png");
+        rightS=new ImageIcon("PD Assets/rightstand.png");
+        rightW=new ImageIcon("PD Assets/rightwalk.png");
+        backS=new ImageIcon("PD Assets/backstand.png");
+        backW=new ImageIcon("PD Assets/backwalk.png");
 
         sand = new ImageIcon(sand.getImage().getScaledInstance((frameWidth/15),(frameHeight/9), Image.SCALE_DEFAULT));
         wall = new ImageIcon(wall.getImage().getScaledInstance((frameWidth/15),(frameHeight/9), Image.SCALE_DEFAULT));
@@ -272,7 +272,7 @@ public class CaveEntrance implements KeyListener {
             n = 1;
             if (n == 1) {
                 JOptionPane.showMessageDialog(frame,  
-                    "Where am I? What is this place?\nWhy am I here? Last time I was on my bedroom but here I am...", 
+                    "Where am I? What is this place?\nWhy am I here? Last time I was on my bedroom but here I am...\n\nPress arrow keys to continue.", 
                     "Cody:",                                         
                     JOptionPane.INFORMATION_MESSAGE);
                 n = n + 1;
@@ -316,5 +316,9 @@ public class CaveEntrance implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {  
     }
+    
+    public static void main(String[] args) {
+        CaveEntrance go = new CaveEntrance();
+        go.setFrame();
+    }
 }
-  
