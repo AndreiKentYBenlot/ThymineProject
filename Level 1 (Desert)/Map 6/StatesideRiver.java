@@ -72,14 +72,14 @@ public class StatesideRiver implements KeyListener {
         transition = new ImageIcon("PD Assets/transition.png");
         grass = new ImageIcon("PD Assets/grass.png");
         
-        frontS=new ImageIcon("PD Assets/Cody's Character/frontstand.png");
-        frontW=new ImageIcon("PD Assets/Cody's Character/frontwalk.png");
-        leftS=new ImageIcon("PD Assets/Cody's Character/leftstand.png");
-        leftW=new ImageIcon("PD Assets/Cody's Character/leftwalk.png");
-        rightS=new ImageIcon("PD Assets/Cody's Character/rightstand.png");
-        rightW=new ImageIcon("PD Assets/Cody's Character/rightwalk.png");
-        backS=new ImageIcon("PD Assets/Cody's Character/backstand.png");
-        backW=new ImageIcon("PD Assets/Cody's Character/backwalk.png");
+        frontS=new ImageIcon("PD Assets/frontstand.png");
+        frontW=new ImageIcon("PD Assets/frontwalk.png");
+        leftS=new ImageIcon("PD Assets/leftstand.png");
+        leftW=new ImageIcon("PD Assets/leftwalk.png");
+        rightS=new ImageIcon("PD Assets/rightstand.png");
+        rightW=new ImageIcon("PD Assets/rightwalk.png");
+        backS=new ImageIcon("PD Assets/backstand.png");
+        backW=new ImageIcon("PD Assets/backwalk.png");
 
         sand = new ImageIcon(sand.getImage().getScaledInstance((frameWidth/15),(frameHeight/9), Image.SCALE_DEFAULT));
         water = new ImageIcon(water.getImage().getScaledInstance((frameWidth/15),(frameHeight/9), Image.SCALE_DEFAULT));
@@ -194,9 +194,9 @@ public class StatesideRiver implements KeyListener {
                         JOptionPane.showMessageDialog(null, "Correct! It took you " + attempts + " tries.");
                         hasWon = true;
                     } else if (guess < secretNumber) {
-                        JOptionPane.showMessageDialog(null, "Too low! Try again.");
+                        JOptionPane.showMessageDialog(null, "Too low! Try again and make sure it a single digit.");
                     } else {
-                        JOptionPane.showMessageDialog(null, "Too high! Try again.");
+                        JOptionPane.showMessageDialog(null, "Too high! Try again and make sure it a single digit.");
                     }
                 }
             } catch (NumberFormatException ex) {
@@ -316,4 +316,8 @@ public class StatesideRiver implements KeyListener {
             "Great, you got it! But before you enter... There's one final question:\nWhat is the area of a rectangle whose length is the same number as the password you just gueesed\nand the width is the number of trees you can find in the area?");
     return Integer.parseInt(input);
 }
+    public static void main(String[] args) {
+        StatesideRiver go = new StatesideRiver();
+        go.setFrame();
+    }
 }
