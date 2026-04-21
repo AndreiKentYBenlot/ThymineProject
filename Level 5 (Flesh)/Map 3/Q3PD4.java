@@ -1,4 +1,4 @@
-package CS4Q3;
+package CS4FINAL;
 
 import javax.swing.*;
 import java.awt.*;
@@ -221,20 +221,21 @@ public class Q3PD4 implements KeyListener {
 }
 
     private void runEnding() {
-        JOptionPane.showMessageDialog(frame,
-                "Cody: There you go!\n\nSystem: Machine Assembling permitted.");
+    JOptionPane.showMessageDialog(frame,
+            "Cody: There you go!\n\nSystem: Machine Assembling permitted.");
 
-        JOptionPane.showMessageDialog(frame,
-                "Cody: Alright, looks like I have to assemble this thing.");
+    JOptionPane.showMessageDialog(frame,
+            "Cody: Alright, looks like I have to assemble this thing.");
 
-        JOptionPane.showMessageDialog(frame,
-                "Cody: All done.\nFrom the looks of this, this is my ticket out of here.\nI shouldn't linger for long.");
+    JOptionPane.showMessageDialog(frame,
+            "Cody: All done.\nFrom the looks of this, this is my ticket out of here.\nI shouldn't linger for long.");
 
-        JOptionPane.showMessageDialog(frame,
-                "ESCAPED!\nLEVEL COMPLETE.");
+    JOptionPane.showMessageDialog(frame,
+            "ESCAPED!\nLEVEL COMPLETE.");
 
-        System.exit(0);
-    }
+    frame.dispose();          // closes PD4 window
+    new Q3PD6().setFrame();   // opens PD6
+}
 
     public void keyPressed(KeyEvent e) {
         if (movementLocked) return;
