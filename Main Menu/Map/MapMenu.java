@@ -7,7 +7,7 @@ import java.awt.event.*;
 public class MapMenu implements ActionListener {
     JFrame frame;
     JLabel display;
-    JLabel button1;
+    JButton button1;
     ImageIcon background;
     ImageIcon back;
     int frameWidth = 960;
@@ -17,12 +17,26 @@ public class MapMenu implements ActionListener {
         frame = new JFrame();
         back = new ImageIcon("PD Assets/back.png");
         background = new ImageIcon("PD Assets/backgroundMap.gif");
-        button1 = new JLabel(back);
+        button1 = createIconButton(back);
         display = new JLabel(background);
         
         background = new ImageIcon(background.getImage().getScaledInstance((frameWidth),(frameHeight), Image.SCALE_DEFAULT));
         back = new ImageIcon(back.getImage().getScaledInstance((frameWidth/5),(frameHeight/9), Image.SCALE_DEFAULT));
         button1.setBackground(Color.black);
+        button1.addActionListener(this);
+    }
+    
+    private JButton createIconButton(ImageIcon icon) {
+        JButton btn = new JButton(icon);
+        btn.setBorderPainted(false);
+        btn.setContentAreaFilled(false);
+        btn.setFocusPainted(false);
+        return btn;
+    }
+  
+    private ImageIcon scaleImage(String path, int w, int h) {
+        Image img = new ImageIcon(path).getImage();
+        return new ImageIcon(img.getScaledInstance(w, h, Image.SCALE_SMOOTH));
     }
     
     public void setFrame() {
@@ -34,13 +48,16 @@ public class MapMenu implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == button1) {
+            frame.dispose();
+            mainMenu move = new mainMenu();
+            move.setFrame();
+        }
+    }
+    
     public static void main(String[] args) {
         MapMenu go = new MapMenu();
         go.setFrame();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
     }
 }
