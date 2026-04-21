@@ -310,6 +310,10 @@ public class CaveEntrance implements KeyListener {
                         null,             
                         options4, 
                         options4[0]);
+            frame.dispose();
+            DesertCave move = new DesertCave();
+            move.setFrame();
+
         }
     }
         
@@ -322,3 +326,4 @@ public class CaveEntrance implements KeyListener {
         go.setFrame();
     }
 }
+  
