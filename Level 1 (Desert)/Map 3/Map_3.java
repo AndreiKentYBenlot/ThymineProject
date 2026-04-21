@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Map_3;
+package PD;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-/**
- *
- * @author Mark Angelo
- */
 public class Map_3 implements KeyListener, ActionListener {
 
     JFrame frame;
