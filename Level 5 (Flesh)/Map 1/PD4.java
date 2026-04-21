@@ -23,6 +23,7 @@ public class PD4 implements KeyListener,ActionListener{
     ImageIcon backS;
     ImageIcon backW;
     ImageIcon NPCIcon;
+    ImageIcon blackTile;
     JLabel tiles[];
     JLabel character[];
     JLabel chatSpace;
@@ -33,8 +34,10 @@ public class PD4 implements KeyListener,ActionListener{
     JButton nextB;
     JButton exitB;
     String NPCScript[];
+    boolean levelComplete = false;
     int mapLayout[];
     int characterPlace[];
+    int exitTile = 40;
     int mapWidth=9;
     int mapHeight=9;
     int frameWidth=450;
@@ -66,6 +69,9 @@ public class PD4 implements KeyListener,ActionListener{
             "Then, the second one should be lower limbs of the human body.",
             "Lastly, the third one should be the upper division of the human body that contains the brain."
         };
+        
+        blackTile = new ImageIcon("Images/black.png");
+        blackTile = new ImageIcon(blackTile.getImage().getScaledInstance(frameWidth/mapWidth, frameHeight/mapHeight, Image.SCALE_DEFAULT));
         
         chatSpace = new JLabel();
         textSpace = new JTextArea();
@@ -263,6 +269,9 @@ public class PD4 implements KeyListener,ActionListener{
              }
              characterPosition++;
             }
+            if(levelComplete && characterPosition == exitTile){
+                goToNextLevel();
+            }
         }
         else if(e.getKeyCode()==KeyEvent.VK_LEFT){
             direction=2;
@@ -287,6 +296,9 @@ public class PD4 implements KeyListener,ActionListener{
                     characterMode=0;
                 }
                 characterPosition--;
+            }
+            if(levelComplete && characterPosition == exitTile){
+                goToNextLevel();
             }
         }
         else if(e.getKeyCode()==KeyEvent.VK_DOWN){
@@ -313,6 +325,9 @@ public class PD4 implements KeyListener,ActionListener{
                 }
                 characterPosition+=mapWidth;
             }
+            if(levelComplete && characterPosition == exitTile){
+                goToNextLevel();
+            }
         }
         else if(e.getKeyCode()==KeyEvent.VK_UP){
             direction=0;
@@ -337,6 +352,9 @@ public class PD4 implements KeyListener,ActionListener{
                     characterMode=0;
                 }
                 characterPosition-=mapWidth;
+            }
+            if(levelComplete && characterPosition == exitTile){
+                goToNextLevel();
             }
         }
         else if(e.getKeyCode()==KeyEvent.VK_E){
@@ -392,10 +410,21 @@ public class PD4 implements KeyListener,ActionListener{
                     "You finished the level!", 
                     "Information dialog",                                         
                     JOptionPane.INFORMATION_MESSAGE);
+                
+                levelComplete = true;
+                
+                tiles[exitTile].setIcon(blackTile);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Invalid combination index.");
             index = 0;
         }
+    }
+    
+    public void goToNextLevel(){
+        frame.dispose();
+
+        PD6 nextLevel = new PD6();
+        nextLevel.setFrame();
     }
 }
