@@ -133,7 +133,7 @@ public class Level3_map1 implements KeyListener {
                 case 3:
                     character[i]=new JLabel(Tf);
                     followerloc=i;
-                    followerStart = i; // ⭐ SAVE START POSITION
+                    followerStart = i; 
                     break;
                 case 4:
                     Exit=i;
