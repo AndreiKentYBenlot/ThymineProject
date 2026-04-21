@@ -50,6 +50,8 @@ public class PD6 implements KeyListener,ActionListener{
     int mapHeight=9;
     int frameWidth=450;
     int frameHeight=450;
+    int exitTile = 16;
+    boolean levelComplete = false;
     
     public PD6(){
         characterPosition=-1;
@@ -168,7 +170,24 @@ public class PD6 implements KeyListener,ActionListener{
      public void updateVisibility(){
         int playerX = characterPosition % mapWidth;
         int playerY = characterPosition / mapWidth;
-
+        
+        if(levelComplete){
+            for(int i = 0; i < tiles.length; i++){
+                if(mapLayout[i] == 0) tiles[i].setIcon(wall);
+                else if(mapLayout[i] == 1) tiles[i].setIcon(ground);
+                else if(mapLayout[i] == 2) tiles[i].setIcon(ground);
+                else if(mapLayout[i] == 3) tiles[i].setIcon(button);
+            }
+            for(int i = 0; i < character.length; i++){
+               character[i].setVisible(true);
+            }
+            
+            tiles[exitTile].setIcon(blackTile);
+            
+            return;
+            
+        }
+        
         for(int y = 0; y < mapHeight; y++){
            for(int x = 0; x < mapWidth; x++){
                int index = y * mapWidth + x;
@@ -308,8 +327,12 @@ public class PD6 implements KeyListener,ActionListener{
                     character[characterPosition+1].setIcon(rightS);
                     characterMode=0;
              }
-             characterPosition++;
-             updateVisibility();
+                characterPosition++;
+                updateVisibility();
+             
+                if(levelComplete && characterPosition == exitTile){
+                    goToNextLevel();
+                }
             }
         }
         else if(e.getKeyCode()==KeyEvent.VK_LEFT){
@@ -336,6 +359,10 @@ public class PD6 implements KeyListener,ActionListener{
                 }
                 characterPosition--;
                 updateVisibility();
+                
+                if(levelComplete && characterPosition == exitTile){
+                goToNextLevel();
+                }
             }
         }
         else if(e.getKeyCode()==KeyEvent.VK_DOWN){
@@ -362,6 +389,10 @@ public class PD6 implements KeyListener,ActionListener{
                 }
                 characterPosition+=mapWidth;
                 updateVisibility();
+                
+                if(levelComplete && characterPosition == exitTile){
+                goToNextLevel();
+                }
             }
         }
         else if(e.getKeyCode()==KeyEvent.VK_UP){
@@ -388,6 +419,10 @@ public class PD6 implements KeyListener,ActionListener{
                 }
                 characterPosition-=mapWidth;
                 updateVisibility();
+                
+                if(levelComplete && characterPosition == exitTile){
+                goToNextLevel();
+                }
             }
         }
         else if(e.getKeyCode()==KeyEvent.VK_E){
@@ -411,6 +446,8 @@ public class PD6 implements KeyListener,ActionListener{
                 "You finished the level!", 
                 "Information dialog",                                         
                 JOptionPane.INFORMATION_MESSAGE);
+        
+        levelComplete = true;
     }
     
     @Override
@@ -503,6 +540,13 @@ public class PD6 implements KeyListener,ActionListener{
                 textSpace.setText("You're wrong!");
             }
         }
+    }
+    
+    public void goToNextLevel(){
+        frame.dispose();
+
+        Q3PD4 nextLevel = new Q3PD4();
+        nextLevel.setFrame();
     }
 }
 
