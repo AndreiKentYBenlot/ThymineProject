@@ -347,6 +347,20 @@ public class Map_4 implements KeyListener{
                 }
                 characterPosition -= mapWidth;
             }
+            if((characterPosition) == 42 || (characterPosition) == 43) {
+                Object[] options4 = {"True", "False"};
+                        int choice4 = JOptionPane.showOptionDialog(frame,
+                                "Would you like to proceed?",
+                                "",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                options4,
+                                options4[0]);
+                frame.dispose();
+                Map_5 move = new Map_5();
+                move.setFrame();
+            }
         } 
         else if (e.getKeyCode() == KeyEvent.VK_SPACE){
             int movement=0;
