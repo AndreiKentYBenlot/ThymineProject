@@ -1,4 +1,4 @@
-package CS4Q3;
+package CS4FINAL;
 
 import javax.swing.*;
 import java.awt.*;
