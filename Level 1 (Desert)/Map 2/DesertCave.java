@@ -455,6 +455,9 @@ public class DesertCave implements KeyListener{
                         null,             
                         options4, 
                         options4[0]);
+            setFrame.dispose();
+            Map_3 move = new Map_3();
+            move.setFrame();
         }
         
         }
