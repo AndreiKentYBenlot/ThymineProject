@@ -452,6 +452,20 @@ public class Map_3 implements KeyListener, ActionListener {
                 }
                 characterPosition -= mapWidth;
             }
+            if((characterPosition) >= 3 && (characterPosition) <= 11) {
+                Object[] options4 = {"True", "False"};
+                        int choice4 = JOptionPane.showOptionDialog(frame,
+                                "Would you like to proceed?",
+                                "",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                options4,
+                                options4[0]);
+                frame.dispose();
+                Map_4 move = new Map_4();
+                move.setFrame();
+            }
         } 
         else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             int movement = 0;
