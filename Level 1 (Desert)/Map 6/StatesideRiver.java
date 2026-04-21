@@ -218,6 +218,12 @@ public class StatesideRiver implements KeyListener {
                 }
                 if (hasAnswered == true) { JOptionPane.showMessageDialog(null, "Now go forth, fellow traveller!"); }
                 frame.requestFocusInWindow();
+                if (characterPosition == 1 || characterPosition == 2 || characterPosition == 3 || characterPosition == 4 || characterPosition == 5 || characterPosition == 6 || characterPosition == 7 || characterPosition == 8 || characterPosition == 9 || characterPosition == 10 || characterPosition == 11 || characterPosition == 12 || characterPosition == 13 || characterPosition == 14 || characterPosition == 0) {
+                    frame.dispose();
+                    Map move = new Map();
+                    move.setFrame();
+
+                }
             }
             return;
         }
