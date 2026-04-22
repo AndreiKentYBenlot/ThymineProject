@@ -3,7 +3,7 @@ package pd5;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+import java.io.*;
 public class Pd5 implements KeyListener {
 
     JFrame frame; 
@@ -50,6 +50,8 @@ public class Pd5 implements KeyListener {
     int totalIndex;
     int boxLocation; 
     int moveIndex; 
+    int doorLocation;
+    int finishLocation;
     
     
 
@@ -59,31 +61,32 @@ public class Pd5 implements KeyListener {
         characterMode=0; 
         direction=-1; 
         objectives=0; 
-        moveIndex = 0;
+        moveIndex = 0; 
+        finishLocation = -1;
 
-        mapFloor = new ImageIcon("PD Assets/floor.png"); 
-        door = new ImageIcon("PD Assets/mapDoor.png"); 
-        wall1 = new ImageIcon("PD Assets/wall1.png"); 
-        wall2 = new ImageIcon("PD Assets/wall2.png");  
-        wall3 = new ImageIcon("PD Assets/wall3.png");  
-        wall4 = new ImageIcon("PD Assets/wall4.png"); 
-        corner1 = new ImageIcon("PD Assets/cornerBottomLeft.jpg"); 
-        corner2 = new ImageIcon("PD Assets/cornerBottomRight.jpg"); 
-        corner3 = new ImageIcon("PD Assets/cornerTopLeft.jpg"); 
-        corner4 = new ImageIcon("PD Assets/cornerTopRight.jpg"); 
-        box = new ImageIcon("PD Assets/box.png"); 
-        objectiveNote = new ImageIcon("PD Assets/message.png"); 
-        questionsTile = new ImageIcon("PD Assets/question.png");
+        mapFloor = new ImageIcon("Pictures/floor.png"); 
+        door = new ImageIcon("Pictures/mapDoor.png"); 
+        wall1 = new ImageIcon("Pictures/wall1.png"); 
+        wall2 = new ImageIcon("Pictures/wall2.png");  
+        wall3 = new ImageIcon("Pictures/wall3.png");  
+        wall4 = new ImageIcon("Pictures/wall4.png"); 
+        corner1 = new ImageIcon("Pictures/cornerBottomLeft.jpg"); 
+        corner2 = new ImageIcon("Pictures/cornerBottomRight.jpg"); 
+        corner3 = new ImageIcon("Pictures/cornerTopLeft.jpg"); 
+        corner4 = new ImageIcon("Pictures/cornerTopRight.jpg"); 
+        box = new ImageIcon("Pictures/box.png"); 
+        objectiveNote = new ImageIcon("Pictures/message.png"); 
+        questionsTile = new ImageIcon("Pictures/question.png");
         
         
-        frontS=new ImageIcon("PD Assets/Cody's Character/frontstand.png");
-        frontW=new ImageIcon("PD Assets/Cody's Character/frontwalk.png");
-        leftS=new ImageIcon("PD Assets/Cody's Character/leftstand.png");
-        leftW=new ImageIcon("PD Assets/Cody's Character/leftwalk.png");
-        rightS=new ImageIcon("PD Assets/Cody's Character/rightstand.png");
-        rightW=new ImageIcon("PD Assets/Cody's Character/rightwalk.png");
-        backS=new ImageIcon("PD Assets/Cody's Character/backstand.png");
-        backW=new ImageIcon("PD Assets/Cody's Character/backwalk.png");
+        frontS=new ImageIcon("Pictures/frontstand.png");
+        frontW=new ImageIcon("Pictures/frontwalk.png");
+        leftS=new ImageIcon("Pictures/leftstand.png");
+        leftW=new ImageIcon("Pictures/leftwalk.png");
+        rightS=new ImageIcon("Pictures/rightstand.png");
+        rightW=new ImageIcon("Pictures/rightwalk.png");
+        backS=new ImageIcon("Pictures/backstand.png");
+        backW=new ImageIcon("Pictures/backwalk.png");
         
         mapFloor=new ImageIcon(mapFloor.getImage().getScaledInstance((frameWidth/mapWidth), (frameHeight/mapHeight), Image.SCALE_DEFAULT));
         wall1=new ImageIcon(wall1.getImage().getScaledInstance((frameWidth/mapWidth), (frameHeight/mapHeight), Image.SCALE_DEFAULT)); 
@@ -115,14 +118,14 @@ public class Pd5 implements KeyListener {
             0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,
-            0,2,0,0,0,0,0,0,0,0,0,0,
+            0,1,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0, 
             0,0,0,0,0,0,0,0,0,0,0,0, 
-            0,0,0,0,0,0,1,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0 
         }; 
         
@@ -139,16 +142,16 @@ public class Pd5 implements KeyListener {
         mapLayout=new int[]{
             4,6,6,6,6,6,6,6,6,6,6,3,
             9,0,0,0,0,0,0,0,0,0,0,7,
-            6,0,0,0,0,0,0,0,0,0,0,7,
-            5,10,11,0,0,0,0,0,0,0,0,7,
-            8,0,0,0,0,0,0,0,0,0,0,7,
+            6,0,0,0,0,0,0,0,0,0,0,6,
+            0,0,0,0,0,0,0,0,0,11,10,5,
+            8,0,0,0,0,0,0,0,0,0,0,8,
+            9,0,0,0,12,0,0,0,0,0,0,7,
             9,0,0,0,0,0,0,0,0,0,0,7,
             9,0,0,0,0,0,0,0,0,0,0,7,
-            9,0,0,0,0,0,0,0,0,0,0,7,
-            9,0,0,0,0,0,0,0,0,12,0,7, 
+            9,0,0,0,0,0,0,0,0,0,0,7, 
             9,0,0,0,0,0,0,0,0,0,0,7, 
             9,0,0,0,0,0,0,0,0,0,0,7,
-            2,8,8,8,9,0,0,7,8,8,8,1 
+            2,8,8,8,8,8,8,8,8,8,8,1 
         };
         
         for(int i=0;i<tiles.length;i++){
@@ -157,7 +160,10 @@ public class Pd5 implements KeyListener {
             else if(mapLayout[i]==2) tiles[i]= new JLabel(corner4);
             else if(mapLayout[i]==3) tiles[i]= new JLabel(corner1);
             else if(mapLayout[i]==4) tiles[i]= new JLabel(corner2);
-            else if(mapLayout[i]==5) tiles[i]= new JLabel(door); 
+            else if(mapLayout[i]==5) { 
+                tiles[i]= new JLabel(door);
+                doorLocation = i;
+            } 
             else if(mapLayout[i]==6) tiles[i]= new JLabel(wall1); 
             else if(mapLayout[i]==7) tiles[i]= new JLabel(wall2); 
             else if(mapLayout[i]==8) tiles[i]= new JLabel(wall3); 
@@ -215,7 +221,7 @@ public class Pd5 implements KeyListener {
         if(index < 0 || index >= mapLayout.length){
             return true;
         }
-        if(mapLayout[index]==5 || mapLayout[index]==6 || mapLayout[index]==7 || mapLayout[index]==8 || mapLayout[index]==9 || mapLayout[index]==10 || mapLayout[index]==1 || mapLayout[index]==2 || mapLayout[index]==3 || mapLayout[index]==4){
+        if(mapLayout[index]==5 || mapLayout[index]==6 || mapLayout[index]==7 || mapLayout[index]==8 || mapLayout[index]==9 || mapLayout[index]==1 || mapLayout[index]==2 || mapLayout[index]==3 || mapLayout[index]==4){
             return true;
         } 
         
@@ -240,6 +246,51 @@ public class Pd5 implements KeyListener {
         boxLocation = newLocation; 
         moveIndex = 1;
     } 
+    } 
+    
+    public void loadGame() {
+    try {
+        BufferedReader br = new BufferedReader(new FileReader("pd5_save.txt"));
+
+        String line;
+
+        line = br.readLine();
+        if (line != null) player.setPosition(Integer.parseInt(line));
+
+        line = br.readLine();
+        if (line != null) boxLocation = Integer.parseInt(line);
+
+        line = br.readLine();
+        if (line != null) moveIndex = Integer.parseInt(line);
+
+        br.close(); 
+        for (int i = 0; i < character.length; i++) {
+            character[i].setIcon(null);
+            characterPlace[i] = 0;
+        }
+
+
+        character[player.getPosition()].setIcon(frontS);
+        characterPlace[player.getPosition()] = 1;
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(frame, "Load failed!");
+    }
+    }
+    
+    public void saveGame() {
+    try {
+        FileWriter fw = new FileWriter("pd5_save.txt");
+
+        fw.write(player.getPosition() + "\n");
+        fw.write(boxLocation + "\n");
+        fw.write(moveIndex + "\n");
+
+        fw.close();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(frame, "Save failed!");
+    }
     }
     
     @Override
@@ -358,6 +409,15 @@ public class Pd5 implements KeyListener {
             }
         }
         
+        else if (e.getKeyCode() == KeyEvent.VK_S) {
+            saveGame();
+            JOptionPane.showMessageDialog(frame, "Saved!");
+        }
+
+        else if (e.getKeyCode() == KeyEvent.VK_L) {
+            loadGame();
+            JOptionPane.showMessageDialog(frame, "Loaded!");
+        }
         
         if (player.getPosition() == objectives) {
             JOptionPane.showMessageDialog(
@@ -533,18 +593,25 @@ public class Pd5 implements KeyListener {
             
             
             moveBox(); 
-            mapLayout[questionLocation] = 0;
-            tiles[questionLocation].setIcon(mapFloor); 
+            mapLayout[doorLocation] = 0;
+            tiles[questionLocation].setIcon(mapFloor);  
+            tiles[doorLocation].setIcon(mapFloor); 
+            finishLocation = doorLocation;
+            
+                
+            
+            
+            
+            
             
             
         }
         } 
-        else { 
-            if(player.getPosition() == questionLocation) { 
-                int x = 0;
-            }
+        if (finishLocation != -1 && player.getPosition() == finishLocation) {
+            JOptionPane.showMessageDialog(frame, "You escaped! 🎉");
+            System.exit(0);
+}
         }
-    }
 
     
     @Override public void keyTyped(KeyEvent e) {}
@@ -555,5 +622,6 @@ public class Pd5 implements KeyListener {
     }
     
 }
+ 
  
 
